@@ -10,9 +10,12 @@ if __name__ == "__main__":
         language = argv[1]
     else:
         language = "ru"
-    agent = ("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 "
-             "(KHTML, like Gecko) Chrome/15.0.872.0 Safari/535.2")
-    p = mplayer.Player(args=('-user-agent', agent))
+    agent = ("Mozilla/5.0 (Windows NT 6.1; WOW64) "
+             "AppleWebKit/537.17 "
+             "(KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17")
+
+    p = mplayer.Player(args=('-user-agent', agent, '-ao', 'pulse'))
+    p.cmd_prefix = ''
     while True:
         text = raw_input()
         url = (u"http://translate.google.com/"
@@ -20,4 +23,4 @@ if __name__ == "__main__":
                language,
                urllib.quote(text)))
         print(url)
-        p.loadfile(url)
+        p.loadfile(url, 1)
